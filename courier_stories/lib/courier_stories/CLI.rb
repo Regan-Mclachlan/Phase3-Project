@@ -21,15 +21,29 @@ class CourierStories::CLI
         Story.all.each.with_index(1) do |post, index|
              puts "#{index} #{post.title}"
          end
+         prompt_user
      end
 
      def prompt_user
-        puts "Input the number of the article you are interested in."
-        puts "Intput [exit] to quit"
+        puts "Input the number of the article you are interested in to see the excerpt."
+        puts "Input [exit] to quit"
+        puts "Input [home] to return to homepage"
         input = ""
         while input != "exit"
             input = gets.strip
             if input.to_i !=0 && input.to_i <= Story.all.size
+                Story.all[input.to_i - 1].print_excerpt(input.to_i)
+                
+            elsif input == "home"
+                display_article
+            
+            elsif input == "exit"
+                puts "Goodbye"
+                exit
+            else
+                puts "Invalid input please try again"
+            end
+        end
      end
 
 

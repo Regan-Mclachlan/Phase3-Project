@@ -4,8 +4,8 @@ require 'pry'
 
 class Scraper
 
-    attr_reader :doc
-    attr_accessor :title, :url, :excerpt, :scrape
+    attr_reader :doc, :page
+    attr_accessor :title, :url, :excerpt, :scrape, :article
 
     @@all = []
 
@@ -26,6 +26,18 @@ class Scraper
             excerpt = post.css(".entry-summary>p").text.strip
             title = post.css(".entry-title").text.strip
             Story.new(title: title, url: url, excerpt: excerpt)
+        end
+    end
+
+    def scrape_article_page(url)
+        @page = Nokogiri::HTML(open(url))
+        sort_article
+    end
+
+    def sort_article
+        self.page.css(".post-content").collect do |info|
+             article = info.css("p").text.strip
+             StoryArticle.new(article: article)
         end
     end
 
