@@ -36,14 +36,22 @@ class CourierStories::CLI
                 
             elsif input == "home"
                 display_article
+                clear_recent_article
             
             elsif input == "exit"
                 puts "Goodbye"
                 exit
+            elsif input == "yes"
+                Story.new.print_story
             else
                 puts "Invalid input please try again"
             end
         end
+
+     end
+
+     def clear_recent_article
+        StoryArticle.all.clear
      end
 
 
