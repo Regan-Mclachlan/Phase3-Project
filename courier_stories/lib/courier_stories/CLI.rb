@@ -7,7 +7,7 @@ class CourierStories::CLI
     end
     
     def start
-        puts "Welcome to the Courier Newspaper"
+        puts "Welcome to the Narrabri Courier Newspaper!"
         puts "Would you like to view a recent story?"
         puts "~~Input [Y] for yes or input any other character to exit.~~"
 
