@@ -50,9 +50,4 @@ class CourierStories::CLI
 
      end
 
-     def clear_recent_article
-        StoryArticle.all.clear
-     end
-
-
 end
